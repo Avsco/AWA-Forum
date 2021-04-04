@@ -1,0 +1,32 @@
+{
+  "idOwner": "123",
+  "nameOwner": "Juan",
+  "groupName": "Abenjers",
+  "groupImage": "123",
+  "groupInfo": "discutimos sobre que pan se come mejor",
+  "groupRules": "Ni una",
+  "numberMembers": 3,
+  "members": [
+    {
+      "idMember": "1",
+      "nameMember": "kiko",
+      "imageMember": "123",
+      "enabledComment": false,
+      "joinOn": "string"
+    },
+    {
+      "idMember": "2",
+      "nameMember": "chavo",
+      "imageMember": "123",
+      "enabledComment": false,
+      "joinOn": "string"
+    },
+    {
+      "idMember": "3",
+      "nameMember": "ramon",
+      "imageMember": "123",
+      "enabledComment": false,
+      "joinOn": "string"
+    }
+  ]
+}
