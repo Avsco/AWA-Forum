@@ -5,7 +5,8 @@ class Database {
   private config: ConnectionOptions;
 
   constructor() {
-    this.URI = `mongodb://${"localhost"}:${27017}/${"prueba"}`;
+    // this.URI = `mongodb://${"localhost"}:${27017}/${"prueba"}`;
+    this.URI = `mongodb+srv://minka:gatitos123@forum.mt7wy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
     this.config = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
