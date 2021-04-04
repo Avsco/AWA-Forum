@@ -9,7 +9,7 @@ class Service {
   }
 
   async get(query: any, options: any): Promise<Interface[] | []> {
-    options.sort.likes = 1;
+    options.sort = { likes: 1 };
     // @ts-ignore
     const model = await ModelSchema.paginate(query, options);
     if (!model) return [];
