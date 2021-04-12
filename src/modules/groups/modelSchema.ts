@@ -8,7 +8,6 @@ export interface Interface extends Document {
   groupImage: string;
   groupInfo: string;
   groupRules: string;
-  numberMembers?: number;
   members?: [
     {
       idMember: string;
@@ -47,10 +46,6 @@ const modelSchema: Schema = new Schema(
       type: String,
       required: true,
     },
-    numberMembers: {
-      type: Number,
-      default: 0,
-    },
     members: [
       {
         idMember: {
@@ -76,6 +71,22 @@ const modelSchema: Schema = new Schema(
             const now = new Date();
             return now.toISOString();
           },
+        },
+      },
+    ],
+    forums: [
+      {
+        idForum: {
+          type: Schema.Types.ObjectId,
+          require: true,
+        },
+        forumName: {
+          type: String,
+          require: true,
+        },
+        forumCategory: {
+          type: String,
+          require: true,
         },
       },
     ],

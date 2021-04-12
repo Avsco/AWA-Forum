@@ -1,6 +1,7 @@
 /* Recien trabajamos con las consulatas de la base de datos */
 import ModelSchema, { Interface } from "./modelSchema";
 import { member } from "./groups.interface";
+import { Interface as forum } from "../forums/modelSchema";
 
 class Service {
   async show(id: string): Promise<Interface | null> {
@@ -45,7 +46,12 @@ class Service {
   async addMember(idGroup: string, member: member) {
     await ModelSchema.findByIdAndUpdate(idGroup, {
       $push: { members: member },
-      $inc: { numberMembers: 1 },
+    });
+  }
+
+  async addForum(idGroup: string, forum: forum) {
+    await ModelSchema.findByIdAndUpdate(idGroup, {
+      $push: { forums: forum },
     });
   }
 }
