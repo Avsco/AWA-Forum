@@ -55,6 +55,8 @@ class Controller {
       return res.status(400).json({ msg: "require description forum" });
     if (!req.body.categoryForum)
       return res.status(400).json({ msg: "require category forum" });
+    if (!req.body.idGroup)
+      return res.status(400).json({ msg: "require id group owner" });
 
     try {
       const newModel = await Model.post(req.body);

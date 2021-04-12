@@ -1,7 +1,7 @@
 /* Recien trabajamos con las consulatas de la base de datos */
 import ModelSchema, { Interface } from "./modelSchema";
 import { member } from "./groups.interface";
-import { Interface as forum } from "../forums/modelSchema";
+import { Interface as forum } from "../forums/forum.interface";
 
 class Service {
   async show(id: string): Promise<Interface | null> {

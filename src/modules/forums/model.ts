@@ -1,4 +1,5 @@
 import service from "./service";
+import GroupService from "../groups/service";
 import { Interface } from "./modelSchema";
 
 class Model {
@@ -15,6 +16,12 @@ class Model {
   }
 
   async post(model: Interface): Promise<Interface | null> {
+    GroupService.addForum(model.idGroup, {
+      id: model.id,
+      nameForum: model.nameForum,
+      descriptionForum: model.descriptionForum,
+      categoryForum: model.categoryForum,
+    });
     return await service.post(model);
   }
 

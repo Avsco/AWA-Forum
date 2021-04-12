@@ -6,6 +6,7 @@ export interface Interface extends Document {
   nameForum: string;
   descriptionForum: string;
   categoryForum: string;
+  idGroup: string;
 }
 
 const modelSchema: Schema = new Schema(
@@ -22,6 +23,10 @@ const modelSchema: Schema = new Schema(
       type: String,
       require: true,
       enum: categories,
+    },
+    idGroup: {
+      type: Schema.Types.ObjectId,
+      require: true,
     },
   },
   { versionKey: false, timestamps: true }
