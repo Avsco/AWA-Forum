@@ -1,5 +1,6 @@
 import { model, Schema, Document } from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
+import { categories } from "../../models/category";
 
 export interface Interface extends Document {
   username: string;
@@ -44,14 +45,7 @@ const modelSchema: Schema = new Schema(
     },
     category: {
       type: String,
-      enum: [
-        "Juegos",
-        "Programacion",
-        "Deportes",
-        "Ejercicios",
-        "Libros",
-        "Comida",
-      ],
+      enum: categories,
       required: true,
     },
     likes: {
