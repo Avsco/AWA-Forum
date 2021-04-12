@@ -103,9 +103,24 @@ class Controller {
       return res.status(400).json({ msg: "require id user" });
     if (!req.body.content)
       return res.status(400).json({ msg: "require content" });
+    if (!req.body.autorImage)
+      return res.status(400).json({ msg: "require autor image" });
+    if (!req.body.username)
+      return res.status(400).json({ msg: "require username" });
+    if (!req.body.idGroup)
+      return res.status(400).json({ msg: "require group id" });
 
     try {
-      await Model.commentPost(req.body, req.params.id);
+      await Model.commentPost(
+        {
+          autorImage: req.body.autorImage,
+          username: req.body.username,
+          idAutor: req.body.idAutor,
+          content: req.body.content,
+        },
+        req.params.id,
+        req.body.idGroup
+      );
       return res.status(201).json({ msg: "sucess" });
     } catch (error) {
       return res.status(422).json({ code: error.code, msg: error.message });

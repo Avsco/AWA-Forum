@@ -36,23 +36,33 @@ class Service {
     return model;
   }
 
-  async enableComment(idGroup: string, idMember: string) {
+  async enableComment(idGroup: string, idMember: string): Promise<void> {
     await ModelSchema.updateOne(
       { _id: idMember, "members.idMember": idGroup },
       { $set: { "members.$.enabledComment": true } }
     );
   }
 
-  async addMember(idGroup: string, member: member) {
+  async addMember(idGroup: string, member: member): Promise<void> {
     await ModelSchema.findByIdAndUpdate(idGroup, {
       $push: { members: member },
     });
   }
 
-  async addForum(idGroup: string, forum: forum) {
+  async addForum(idGroup: string, forum: forum): Promise<void> {
     await ModelSchema.findByIdAndUpdate(idGroup, {
       $push: { forums: forum },
     });
+  }
+
+  async canComment(idGroup: string, idMember: string): Promise<boolean> {
+    return (await ModelSchema.find({
+      _id: `ObjectId(${idGroup})`,
+      "members.idMember": idMember,
+      "members.enabledComment": true,
+    }))
+      ? true
+      : false;
   }
 }
 

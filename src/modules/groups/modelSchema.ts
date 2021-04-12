@@ -17,6 +17,14 @@ export interface Interface extends Document {
       joinOn: string;
     }
   ];
+  forums?: [
+    {
+      idForum: string;
+      nameForum: string;
+      categoryForum: string;
+      descriptionForum: string;
+    }
+  ];
 }
 
 const modelSchema: Schema = new Schema(
@@ -80,11 +88,14 @@ const modelSchema: Schema = new Schema(
           type: Schema.Types.ObjectId,
           require: true,
         },
-        forumName: {
+        nameForum: {
           type: String,
           require: true,
         },
-        forumCategory: {
+        descriptionForum: {
+          type: String,
+        },
+        categoryForum: {
           type: String,
           require: true,
         },

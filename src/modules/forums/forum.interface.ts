@@ -1,5 +1,5 @@
 export interface Interface {
-  id: string;
+  idForum: string;
   nameForum: string;
   descriptionForum: string;
   categoryForum: string;

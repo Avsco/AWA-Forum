@@ -6,7 +6,6 @@ export interface member {
   enabledComment: boolean;
   joinOn: string;
 }
-
 export interface group {
   groupName: string;
   groupImage: string;

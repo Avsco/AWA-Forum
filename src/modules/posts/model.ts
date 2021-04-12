@@ -1,5 +1,6 @@
 import service from "./service";
-import forumService from "../forums/service";
+import forumsService from "../forums/service";
+import groupsService from "../groups/service";
 import { Interface } from "./modelSchema";
 import { comment } from "./post.interface";
 
@@ -18,7 +19,7 @@ class Model {
 
   //el parametro model tiene que tener la interfaz post pero hasta.. esta con la otra
   async post(model: Interface, idUser?: string): Promise<Interface | null> {
-    await forumService.addPost(model.idForum, model.id);
+    await forumsService.addPost(model.idForum, model.id);
     // peticion a firebease para objetener lo demas del modelo
     return await service.post(model);
   }
@@ -35,8 +36,10 @@ class Model {
     await service.disLike(id);
   }
 
-  async commentPost(comment: comment, id: string) {
-    await service.comment(id, comment);
+  async commentPost(comment: comment, idPost: string, idGroup: string) {
+    if (groupsService.canComment(idGroup, comment.idAutor))
+      throw new Error("this user not have permissions to comment");
+    await service.comment(idPost, comment);
   }
 }
 

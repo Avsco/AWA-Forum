@@ -43,8 +43,10 @@ class Service {
     await ModelSchema.findByIdAndUpdate(id, { $inc: { dislikes: 1 } });
   }
 
-  async comment(id: string, comment: comment): Promise<void> {
-    await ModelSchema.findByIdAndUpdate(id, { $push: { comments: comment } });
+  async comment(idPost: string, comment: comment): Promise<void> {
+    await ModelSchema.findByIdAndUpdate(idPost, {
+      $push: { comments: comment },
+    });
   }
 }
 

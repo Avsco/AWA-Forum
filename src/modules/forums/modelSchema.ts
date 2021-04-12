@@ -7,6 +7,11 @@ export interface Interface extends Document {
   descriptionForum: string;
   categoryForum: string;
   idGroup: string;
+  posts?: [
+    {
+      idPost: string;
+    }
+  ];
 }
 
 const modelSchema: Schema = new Schema(

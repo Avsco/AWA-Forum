@@ -17,7 +17,7 @@ class Model {
 
   async post(model: Interface): Promise<Interface | null> {
     await GroupService.addForum(model.idGroup, {
-      id: model.id,
+      idForum: model.id,
       nameForum: model.nameForum,
       descriptionForum: model.descriptionForum,
       categoryForum: model.categoryForum,
