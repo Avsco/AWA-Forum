@@ -35,8 +35,12 @@ class Service {
     return model;
   }
 
-  async like(id: string, count: number): Promise<void> {
-    await ModelSchema.findByIdAndUpdate(id, { $inc: { likes: count } });
+  async like(id: string): Promise<void> {
+    await ModelSchema.findByIdAndUpdate(id, { $inc: { likes: 1 } });
+  }
+
+  async disLike(id: string): Promise<void> {
+    await ModelSchema.findByIdAndUpdate(id, { $inc: { dislikes: 1 } });
   }
 
   async comment(id: string, comment: comment): Promise<void> {

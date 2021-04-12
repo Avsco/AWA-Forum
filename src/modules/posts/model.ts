@@ -27,11 +27,11 @@ class Model {
   }
 
   async like(id: string) {
-    await service.like(id, 1);
+    await service.like(id);
   }
 
   async disLike(id: string) {
-    await service.like(id, -1);
+    await service.disLike(id);
   }
 
   async commentPost(comment: comment, id: string) {
