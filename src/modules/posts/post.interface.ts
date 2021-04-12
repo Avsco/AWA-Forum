@@ -1,4 +1,5 @@
 export interface post {
+  id?: StringConstructor;
   title: string;
   content: string;
   category: string;

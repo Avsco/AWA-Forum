@@ -11,6 +11,7 @@ export interface Interface extends Document {
   category: string;
   likes?: number;
   dislikes?: number;
+  idForum: string;
   comments?: [
     {
       idAutor: string;
@@ -56,6 +57,10 @@ const modelSchema: Schema = new Schema(
     disLikes: {
       type: Number,
       default: 0,
+    },
+    idForum: {
+      type: Schema.Types.ObjectId,
+      require: true,
     },
     comments: [
       {

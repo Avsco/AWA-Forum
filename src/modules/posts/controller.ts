@@ -56,6 +56,8 @@ class Controller {
       return res.status(400).json({ msg: "require content" });
     if (!req.body.category)
       return res.status(400).json({ msg: "require category" });
+    if (!req.body.idForum)
+      return res.status(400).json({ msg: "require id of forum owner" });
 
     try {
       const newModel = await Model.post(req.body);

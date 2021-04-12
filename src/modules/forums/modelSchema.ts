@@ -28,6 +28,14 @@ const modelSchema: Schema = new Schema(
       type: Schema.Types.ObjectId,
       require: true,
     },
+    posts: [
+      {
+        idPost: {
+          type: Schema.Types.ObjectId,
+          require: true,
+        },
+      },
+    ],
   },
   { versionKey: false, timestamps: true }
 );

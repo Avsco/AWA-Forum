@@ -1,7 +1,7 @@
 import service from "./service";
+import forumService from "../forums/service";
 import { Interface } from "./modelSchema";
 import { comment } from "./post.interface";
-// import { post } from "./post.dto";
 
 class Model {
   async show(id: string): Promise<Interface | null> {
@@ -18,6 +18,7 @@ class Model {
 
   //el parametro model tiene que tener la interfaz post pero hasta.. esta con la otra
   async post(model: Interface, idUser?: string): Promise<Interface | null> {
+    await forumService.addPost(model.idForum, model.id);
     // peticion a firebease para objetener lo demas del modelo
     return await service.post(model);
   }
