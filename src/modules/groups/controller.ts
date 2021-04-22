@@ -60,7 +60,6 @@ class Controller {
       return res.status(400).json({ msg: "require group rules" });
 
     try {
-      // TODO:  const newModel = await Model.post(req.body: { groupName, groupImage, groupInfo, groupRules }, req.body.idOwner);
       const newModel = await Model.post(req.body);
       if (!newModel)
         return res.status(400).json({ msg: "Resource was not created" });
@@ -85,8 +84,11 @@ class Controller {
     const idUser: string = String(req.params.idUser);
 
     try {
-      await Model.enableComment(req.params.idGroup, idUser);
-      return res.status(200).json({ msg: "sucess update" });
+      if (await Model.enableComment(req.params.idGroup, idUser)) {
+        return res.status(200).json({ msg: "sucess update" });
+      } else {
+        throw new Error("The idGroup or idUser dont exist");
+      }
     } catch (error) {
       return res.status(422).json({ code: error.code, msg: error.message });
     }
@@ -97,9 +99,12 @@ class Controller {
       return res.status(400).json({ msg: "require id member" });
 
     try {
-      //TODO: En teoria solo tendira que ser el id
-      await Model.addMember(req.params.id, req.body);
-      return res.status(200).json({ msg: "sucess update" });
+      const model = await Model.addMember(req.params.id, req.body);
+      if (model) {
+        return res.status(200).json(model);
+      } else {
+        throw new Error("The group dont exist or this member is on the group");
+      }
     } catch (error) {
       return res.status(422).json({ code: error.code, msg: error.message });
     }

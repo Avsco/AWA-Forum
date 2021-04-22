@@ -17,14 +17,6 @@ export interface Interface extends Document {
       joinOn: string;
     }
   ];
-  forums?: [
-    {
-      idForum: string;
-      nameForum: string;
-      categoryForum: string;
-      descriptionForum: string;
-    }
-  ];
 }
 
 const modelSchema: Schema = new Schema(
@@ -59,7 +51,6 @@ const modelSchema: Schema = new Schema(
         idMember: {
           type: String,
           required: true,
-          unique: true,
         },
         nameMember: {
           type: String,
@@ -79,25 +70,6 @@ const modelSchema: Schema = new Schema(
             const now = new Date();
             return now.toISOString();
           },
-        },
-      },
-    ],
-    forums: [
-      {
-        idForum: {
-          type: Schema.Types.ObjectId,
-          require: true,
-        },
-        nameForum: {
-          type: String,
-          require: true,
-        },
-        descriptionForum: {
-          type: String,
-        },
-        categoryForum: {
-          type: String,
-          require: true,
         },
       },
     ],

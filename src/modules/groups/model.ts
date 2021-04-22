@@ -15,9 +15,7 @@ class Model {
     return await service.put(id, model);
   }
 
-  //TODO: el parametro model tiene que tener la interfaz group pero hasta esta con la otra
-  async post(model: Interface, idUser?: string): Promise<Interface | null> {
-    // peticion a firebease para objetener lo demas del modelo
+  async post(model: Interface): Promise<Interface | null> {
     return await service.post(model);
   }
 
@@ -25,13 +23,16 @@ class Model {
     return await service.delete(id);
   }
 
-  async enableComment(idGroup: string, idUser: string) {
-    await service.enableComment(idUser, idGroup);
+  async enableComment(idGroup: string, idMember: string): Promise<boolean> {
+    return await service.enableComment(idGroup, idMember);
   }
 
-  // TODO: hacer la peticion de firebase
-  async addMember(idGroup: string, member: member) {
-    await service.addMember(idGroup, member);
+  async addMember(idGroup: string, member: member): Promise<Interface | null> {
+    if (!(await service.existMember(idGroup, member.idMember))) {
+      return await service.addMember(idGroup, member);
+    } else {
+      return null;
+    }
   }
 }
 

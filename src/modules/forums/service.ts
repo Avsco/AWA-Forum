@@ -33,12 +33,6 @@ class Service {
     const model = await ModelSchema.findByIdAndDelete(id);
     return model;
   }
-
-  async addPost(idForum: string, idPost: string): Promise<void> {
-    await ModelSchema.findByIdAndUpdate(idForum, {
-      $push: { forums: { idPost } },
-    });
-  }
 }
 
 export default new Service();

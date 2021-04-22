@@ -21,6 +21,7 @@ class Controller {
     if (req.query.title) query.title = req.query.title;
     if (req.query.category) query.category = req.query.category;
     if (req.query.username) query.username = req.query.username;
+    if (req.query.idForum) query.idForum = req.query.idForum;
     if (req.query.page) options.page = req.query.page;
 
     try {
@@ -82,8 +83,8 @@ class Controller {
 
   async like(req: Request, res: Response): Promise<Response> {
     try {
-      await Model.like(req.params.id);
-      return res.status(200).json({ msg: "sucess" });
+      const model = await Model.like(req.params.id);
+      return res.status(200).json(model);
     } catch (error) {
       return res.status(422).json({ code: error.code, msg: error.message });
     }
@@ -91,8 +92,8 @@ class Controller {
 
   async disLike(req: Request, res: Response): Promise<Response> {
     try {
-      await Model.disLike(req.params.id);
-      return res.status(200).json({ msg: "sucess" });
+      const model = await Model.disLike(req.params.id);
+      return res.status(200).json(model);
     } catch (error) {
       return res.status(422).json({ code: error.code, msg: error.message });
     }
@@ -111,7 +112,7 @@ class Controller {
       return res.status(400).json({ msg: "require group id" });
 
     try {
-      await Model.commentPost(
+      const model = await Model.commentPost(
         {
           autorImage: req.body.autorImage,
           username: req.body.username,
@@ -121,7 +122,8 @@ class Controller {
         req.params.id,
         req.body.idGroup
       );
-      return res.status(201).json({ msg: "sucess" });
+      if (!model) throw new Error("this user not have permissions to comment");
+      return res.status(201).json(model);
     } catch (error) {
       return res.status(422).json({ code: error.code, msg: error.message });
     }

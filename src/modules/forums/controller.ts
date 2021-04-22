@@ -20,6 +20,7 @@ class Controller {
     let options: any = {};
     if (req.query.nameForum) query.nameForum = req.query.nameForum;
     if (req.query.categoryForum) query.categoryForum = req.query.categoryForum;
+    if (req.query.idGroup) query.idGroup = req.query.idGroup;
     if (req.query.page) options.page = req.query.page;
 
     try {

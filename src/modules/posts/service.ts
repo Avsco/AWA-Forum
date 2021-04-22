@@ -35,16 +35,24 @@ class Service {
     return model;
   }
 
-  async like(id: string): Promise<void> {
-    await ModelSchema.findByIdAndUpdate(id, { $inc: { likes: 1 } });
+  async like(id: string): Promise<Interface | null> {
+    return await ModelSchema.findByIdAndUpdate(
+      id,
+      { $inc: { likes: 1 } },
+      { new: true }
+    );
   }
 
-  async disLike(id: string): Promise<void> {
-    await ModelSchema.findByIdAndUpdate(id, { $inc: { dislikes: 1 } });
+  async disLike(id: string): Promise<Interface | null> {
+    return await ModelSchema.findByIdAndUpdate(
+      id,
+      { $inc: { disLikes: 1 } },
+      { new: true }
+    );
   }
 
-  async comment(idPost: string, comment: comment): Promise<void> {
-    await ModelSchema.findByIdAndUpdate(idPost, {
+  async comment(idPost: string, comment: comment): Promise<Interface | null> {
+    return await ModelSchema.findByIdAndUpdate(idPost, {
       $push: { comments: comment },
     });
   }
